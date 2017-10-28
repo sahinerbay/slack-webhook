@@ -11,7 +11,7 @@ app.get('/', function (req, res) {
     res.end("<h1>Hello World</h1>");
 });
 
-app.get('/api', function (req, res) {
+app.post('/api', function (req, res) {
     request({ url: 'https://app.viima.com/api/customers/2027/items/?_=1509128849281', json: true }, function (error, response, body) {
 
         if (!error && response.statusCode == 200) {
