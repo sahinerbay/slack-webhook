@@ -10,7 +10,7 @@ var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
-router.post('/', urlencodedParser, function (req, res) {
+router.post('/', function (req, res) {
     request({ url: 'https://app.viima.com/api/customers/2027/items/?=1509128849281', json: true }, function (error, response, body) {
 
         let data = {

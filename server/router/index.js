@@ -1,3 +1,3 @@
 module.exports = function (app) {
-    app.use('/viima', require('./routes/viima'));
+    app.use('/viima1', require('./routes/viima'));
 };
