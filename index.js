@@ -10,13 +10,15 @@ var router = express.Router();              // get an instance of the express Ro
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/viima', function (req, res, next) {
-    request({
-        uri: 'https://app.viima.com/api/customers/2027/items',
-        // qs: {
-        //     api_key: '123456',
-        //     query: 'World of Warcraft: Legion'
-        // }
-    }).pipe(res);
+
+    res.send('Hello World!')
+    // request({
+    //     uri: 'https://app.viima.com/api/customers/2027/items',
+    //     // qs: {
+    //     //     api_key: '123456',
+    //     //     query: 'World of Warcraft: Legion'
+    //     // }
+    // }).pipe(res);
 });
 
 // REGISTER OUR ROUTES -------------------------------
