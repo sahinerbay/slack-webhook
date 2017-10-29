@@ -10,7 +10,7 @@ var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
-router.post('/', function (req, res) {
+router.post('/', jsonParser, function (req, res) {
     request({ url: 'https://app.viima.com/api/customers/2027/items/?=1509128849281', json: true }, function (error, response, body) {
 
         let data = {
@@ -20,6 +20,7 @@ router.post('/', function (req, res) {
 
         if (!error && response.statusCode == 200) {
             res.send(data);
+            res.send(req.body)
             console.log(req.body)
         } else {
             console.log('error:', error); // Print the error if one occurred
