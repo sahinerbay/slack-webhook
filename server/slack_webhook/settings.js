@@ -2,7 +2,7 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').load();
 }
 
-let options = {
+let settings = {
     //Settings for Slack incoming webhook
     slack: {
         method: 'POST',
@@ -35,5 +35,5 @@ let options = {
     }
 };
 
-// will be required in get.js and messenger.js
-module.exports = options;
+// required in get.js and messenger.js
+module.exports = settings;

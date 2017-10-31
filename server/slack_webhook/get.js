@@ -1,13 +1,13 @@
 const rp = require('request-promise-native'),
     messenger = require('./messenger'),
-    options = require('./options'),
+    settings = require('./settings'),
     helper = require('./helper');
 
 // Sends Http Requests to Both Viima APIs
 let get = {
     comment: () => {
         //Retrieve Viima API address from Option file
-        rp(options.viimaComment)
+        rp(settings.viimaComment)
             .then((comments) => {
                 //Sort Returned Response
                 return helper.sortCommentsById(comments);
@@ -22,7 +22,7 @@ let get = {
 
                 //If New Comments Available; Sends POST Request to Slack Via Incoming Webhook
                 if (isNew) {
-                    messenger(currentComment, options.types.comment);
+                    messenger(currentComment, settings.types.comment);
                 }
                 //No New Comments
                 else {
@@ -33,7 +33,7 @@ let get = {
 
     idea: () => {
         //Retrieve Viima API address from Option file
-        rp(options.viimaIdea)
+        rp(settings.viimaIdea)
             .then((ideas) => {
                 //Sort Returned Response
                 return helper.sortIdeasById(ideas);
@@ -48,7 +48,7 @@ let get = {
 
                 //If New Ideas Available; Sends POST Request to Slack Via Incoming Webhook
                 if (isNew) {
-                    messenger(currentIdea, options.types.idea);
+                    messenger(currentIdea, settings.types.idea);
                 }
                 //No New Ideas
                 else {
@@ -58,5 +58,5 @@ let get = {
     }
 };
 
-//will be required in init.js
+//required in init.js
 module.exports = get;

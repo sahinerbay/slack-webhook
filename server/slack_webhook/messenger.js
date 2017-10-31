@@ -1,5 +1,5 @@
 const rp = require('request-promise-native'),
-    options = require('./options');
+    settings = require('./settings');
 
 // Create Slack Message with Attachment
 let createMessage = (data, type) => {
@@ -7,12 +7,12 @@ let createMessage = (data, type) => {
 
     // Check type (idea or comment) and customize the message
     switch (type) {
-        case options.types.idea:
+        case settings.types.idea:
             txt = 'New idea> created by';
             attchTxt = data.description;
             break;
 
-        case options.types.comment:
+        case settings.types.comment:
             txt = 'New comment> added by';
             attchTxt = data.content;
             break;
@@ -36,10 +36,11 @@ let createMessage = (data, type) => {
 let messenger = (data, type) => {
 
     //Insert the slack message into body
-    options.slack.body = createMessage(data, type);
+    settings.slack.body = createMessage(data, type);
 
     //Send the messge to Slack Via POST
-    rp(options.slack);
+    rp(settings.slack);
 };
 
+// required in get
 module.exports = messenger;

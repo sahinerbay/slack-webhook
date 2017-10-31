@@ -12,5 +12,5 @@ let requestLoop = setInterval(function () {
     //Set How Often APIs will be checked?
 }, 60000 * 5);
 
-//will be inserted in app.js
+//required in app.js
 module.exports = requestLoop;
