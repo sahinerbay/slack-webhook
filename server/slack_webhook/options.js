@@ -1,12 +1,16 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').load();
+}
+
 let options = {
     slack: {
         method: 'POST',
-        uri: 'https://hooks.slack.com/services/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',
+        uri: process.env.webhook,
         json: true // Automatically stringifies the body to JSON
     },
 
     viimaIdea: {
-        uri: 'https://app.viima.com/api/customers/2027/items',
+        uri: process.env.viimaIdea,
         headers: {
             'User-Agent': 'Request-Promise'
         },
@@ -14,7 +18,7 @@ let options = {
     },
 
     viimaComment: {
-        uri: 'https://app.viima.com/api/customers/2027/activities/',
+        uri: process.env.viimaComment,
         headers: {
             'User-Agent': 'Request-Promise'
         },
