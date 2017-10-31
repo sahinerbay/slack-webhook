@@ -9,12 +9,7 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@slack/client": "^3.14.1",
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
-    "ws": "^3.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "nodemon": "^1.12.1",
     "request": "^2.83.0",

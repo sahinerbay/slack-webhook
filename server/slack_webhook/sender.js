@@ -1,5 +1,5 @@
-const rp = require('request-promise-native');
-const options = require('./options');
+const rp = require('request-promise-native'),
+    options = require('./options');
 
 // Create Slack Message with Attachment
 let createMessage = (data, type) => {
@@ -9,12 +9,14 @@ let createMessage = (data, type) => {
         case options.types.idea:
             txt = 'New idea> created by';
             attchTxt = data.description;
+            break;
 
         case options.types.comment:
             txt = 'New comment> added by';
             attchTxt = data.content;
+            break;
     }
-    
+
     return {
         "text": `<https://app.viima.com/auth/login/?next=/|${txt}`,
         "attachments": [
