@@ -5,6 +5,7 @@ const rp = require('request-promise-native'),
 let createMessage = (data, type) => {
     let txt, attchTxt;
 
+    // Check type (idea or comment) and customize the message
     switch (type) {
         case options.types.idea:
             txt = 'New idea> created by';
@@ -33,7 +34,11 @@ let createMessage = (data, type) => {
 
 // Sending Message to Slack
 let messenger = (data, type) => {
+
+    //Insert the slack message into body
     options.slack.body = createMessage(data, type);
+
+    //Send the messge to Slack Via POST
     rp(options.slack);
 };
 

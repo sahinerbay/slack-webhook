@@ -1,14 +1,16 @@
 const rp = require('request-promise-native'),
     get = require('./get');
 
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').load();
-}
-
 let requestLoop = setInterval(function () {
+
+    //Check For New Comments
     get.comment();
+
+    //Check For New Ideas
     get.idea();
 
-}, 600 * 5);
+    //Set How Often APIs will be checked?
+}, 60000 * 5);
 
+//will be inserted in app.js
 module.exports = requestLoop;
