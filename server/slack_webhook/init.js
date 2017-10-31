@@ -1,48 +1,14 @@
 const rp = require('request-promise-native'),
-    sender = require('./sender'),
-    options = require('./options'),
-    helper = require('./helper');
+    get = require('./get');
 
-let get = {
-    comment: () => {
-        rp(options.viimaComment)
-            .then((comments) => {
-                return helper.sortCommentsById(comments);
-            })
-            .then((sortedComments) => {
-                return helper.getLatestOne(sortedComments);
-            })
-            .then((currentComment) => {
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').load();
+}
 
-                let isNew = helper.isCommentUpdated(currentComment);
+let requestLoop = setInterval(function () {
+    get.comment();
+    get.idea();
 
-                if (isNew) {
-                    sender(currentComment, options.types.comment);
-                } else {
-                    console.log('no new comments...');
-                }
-            });
-    },
+}, 600 * 5);
 
-    idea: () => {
-        rp(options.viimaIdea)
-            .then((ideas) => {
-                return helper.sortIdeasById(ideas);
-            })
-            .then((sortedIdeas) => {
-                return helper.getLatestOne(sortedIdeas)
-            })
-            .then((currentIdea) => {
-
-                let isNew = helper.isIdeaUpdated(currentIdea);
-
-                if (isNew) {
-                    sender(currentIdea, options.types.idea);
-                } else {
-                    console.log('no new ideas...');
-                }
-            })
-    }
-};
-
-module.exports = get;
+module.exports = requestLoop;

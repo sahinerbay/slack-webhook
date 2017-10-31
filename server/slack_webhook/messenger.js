@@ -32,9 +32,9 @@ let createMessage = (data, type) => {
 };
 
 // Sending Message to Slack
-let sender = (data, type) => {
+let messenger = (data, type) => {
     options.slack.body = createMessage(data, type);
     rp(options.slack);
 };
 
-module.exports = sender;
+module.exports = messenger;
